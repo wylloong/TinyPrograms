@@ -10,6 +10,8 @@ Distributed under the BSD license.
 References:
     https://docs.python.org/2/library/sqlite3.html  (English)
     http://www.runoob.com/sqlite/sqlite-python.html (Chinese)
+
+You can get original data in https://github.com/wylloong/TinyPrograms/blob/master/ARPA.db
 '''
 
 import sqlite3 as db
