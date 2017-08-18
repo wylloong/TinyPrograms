@@ -1,0 +1,91 @@
+// 面试题9附加题：用两个队列实现栈
+// 题目：用两个队列实现一个栈。栈的声明如下，请实现它的两个函数appendTail
+// 和deleteHead，分别完成在栈尾部插入结点和在栈头部删除结点的功能。
+
+#pragma once
+#include<queue>
+#include<exception>
+
+using namespace std;
+
+template <typename T> class CStack
+{
+public:
+	CStack();
+	~CStack();
+
+	void appendTail(const T& node);
+	T deleteHead();
+
+private:
+	queue<T> queue1;
+	queue<T> queue2;
+};
+
+template<typename T> CStack<T>::CStack()
+{
+}
+
+template<typename T>  CStack<T>::~CStack()
+{
+}
+
+// 插入元素
+template<typename T> void CStack<T>::appendTail(const T& node)
+{
+	if (queue1.size() > 0 && queue2.size() > 0)
+	{
+		//异常情况
+	}
+	else
+	{
+		//插入到非空队列，如果均为空则插入到queue2中
+		if (queue1.size() == 0)
+		{
+			queue2.push(node);
+		}
+		else
+		{
+			queue1.push(node);
+		}
+	}
+}
+
+template<typename T> T CStack<T>::deleteHead()
+{
+	if (queue1.size() == 0 && queue2.size() == 0)
+	{
+		//异常情况
+		throw new exception("stack is empty");
+	}
+	T head;
+	if (queue1.size() > 0)
+	{
+		while (queue1.size()>1)
+		{
+			//queue1中的元素依次删除，并插入到queue2中，其中queue1删除最后一个元素
+			//相当于从栈中弹出队尾元素
+
+			T& data = queue1.front();
+			queue1.pop();
+			queue2.push(data);
+		}
+		head = queue1.front();
+		queue1.pop();
+	}
+	else
+	{
+		while (queue2.size()>1)
+		{
+			//queue2中的元素依次删除，并插入到queue1中，其中queue2删除最后一个元素
+			//相当于从栈中弹出队尾元素
+
+			T& data = queue2.front();
+			queue2.pop();
+			queue1.push(data);
+		}
+		head = queue2.front();
+		queue2.pop();
+	}
+	return head;
+}
