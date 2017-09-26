@@ -1,0 +1,63 @@
+#include <iostream>
+#include <cstdio>
+#include <stdlib.h>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <stack>
+#include <queue>
+#include <algorithm>
+#include <set>
+using namespace std;
+
+int main()
+{
+	string firstStr;
+	string secondStr;
+	cin >> firstStr;
+	cin >> secondStr;
+
+	const int tableSize = 256;
+	// 第一个hash表
+	unsigned int hashTable1[tableSize];
+	for (unsigned int i = 0; i<tableSize; i++)
+		hashTable1[i] = 0;
+	const char* pHashKey1 = firstStr.c_str();
+	while (*(pHashKey1) != '\0')
+		hashTable1[*(pHashKey1++)]++;
+	// 第二个hash表
+	unsigned int hashTable2[tableSize];
+	for (unsigned int i = 0; i<tableSize; i++)
+		hashTable2[i] = 0;
+	const char* pHashKey2 = secondStr.c_str();
+	while (*(pHashKey2) != '\0')
+		hashTable2[*(pHashKey2++)]++;
+
+	//输出
+	pHashKey1 = firstStr.c_str();
+	while (*(pHashKey1) != '\0')
+	{
+		if (hashTable1[*(pHashKey1)] > 0 && hashTable2[*(pHashKey1)] > 0)
+		{
+			//具有重复字符
+			cout << "_";
+		}
+		else
+			cout << *(pHashKey1);
+		pHashKey1++;
+	}
+	cout << endl;
+	pHashKey2 = secondStr.c_str();
+	while (*(pHashKey2) != '\0')
+	{
+		if (hashTable1[*(pHashKey2)] > 0 && hashTable2[*(pHashKey2)] > 0)
+		{
+			//具有重复字符
+			cout << "_";
+		}
+		else
+			cout << *(pHashKey2);
+		pHashKey2++;
+	}
+	return 0;
+}
