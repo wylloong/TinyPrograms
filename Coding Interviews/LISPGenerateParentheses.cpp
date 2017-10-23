@@ -49,7 +49,7 @@ int main()
 	gets_s(chs);  
 	//gets(chs); //old version
 	std::string str(chs);
-	std::stack<std::string> opstack;		// operations
+	std::stack<std::string> opstack;	// operations
 	std::stack<std::string> strstack;	// divided strings
 	for (int i = 0; i < str.size();)
 	{
@@ -131,7 +131,7 @@ int main()
 				if (error)
 					break;
 				else
-				strstack.push(to_string(temp));
+					strstack.push(to_string(temp));
 			}
 			++i;
 		}
@@ -155,6 +155,6 @@ int main()
 	if (error)
 		cout << "error";
 	else
-	cout << atoi(strstack.top().c_str());
+		cout << atoi(strstack.top().c_str());
 	return 0;
 }
