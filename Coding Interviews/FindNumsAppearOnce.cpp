@@ -1,3 +1,9 @@
+/*******************************************************************
+Copyright(c) 2017, waylon
+All rights reserved.
+Distributed under the BSD license.
+*******************************************************************/
+
 #include<cstdio>
 #include<iostream>
 #include<string>
